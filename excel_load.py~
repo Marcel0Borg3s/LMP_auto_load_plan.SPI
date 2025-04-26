@@ -1,0 +1,24 @@
+import os
+from openpyxl import load_workbook
+
+# planilha
+pasta_base = r'E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets'
+planilha_caminho = os.path.join(pasta_base, 'Processos - SPI.xlsm')
+
+# 1. Abrir a planilha
+wb = load_workbook(planilha_caminho)
+
+# 2. Seleção de abas
+abas_alvo = ['2025', '2024']
+
+# 2. Ler todas as linhas da coluna B "Número do Certificado"
+codigos_encontrados = []  # lista com todos os números de Certificado encontrados
+for linha in range(6, ws_load.max_row + 1):  # começamos da linha 6 pra pular cabeçalho
+    valor_celula = ws_load[f'B{linha}'].value
+    if valor_celula and valor_celula.startswith('LMP'):
+        codigos_encontrados.append(valor_celula)
+
+# 3. Exibir o que foi encontrado
+print("Códigos encontrados:")
+for codigo in codigos_encontrados:
+    print(f"- {codigo}")

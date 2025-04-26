@@ -78,7 +78,7 @@ if __name__ == "__main__":
     codigos_encontrados = [
         "LMP 24.0190",
         "LMP 24.0191",
-        "LMP 25.0001"
+        "LMP 25.0800X"
     ]
 
     resultados = pdf_extract(codigos_encontrados, base_path)

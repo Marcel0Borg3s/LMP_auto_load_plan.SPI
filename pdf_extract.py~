@@ -88,3 +88,5 @@ if __name__ == "__main__":
         print(f"Status: {status}")
         print(f"Dados extraídos: {dados}")
         print("-" * 50)
+
+

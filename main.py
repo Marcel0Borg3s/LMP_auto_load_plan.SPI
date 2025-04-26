@@ -1,6 +1,6 @@
 from excel_load import carregar_codigos_excel
 from pdf_extract import pdf_extract
-from read_excel_file import preencher_planilhas
+from write_excel_file import preencher_planilhas
 import os
 
 planilha_caminho = r"E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets\Processos - SPI.xlsm"

@@ -10,7 +10,7 @@ def preencher_planilhas(planilha_caminho, dados, codigo_referencia):
 
             for linha in range(6, ws.max_row + 1):  # Começar da linha 6
                 valor_celula = ws[f'B{linha}'].value
-                if valor_celula == codigo_referencia:
+                if str(valor_celula).strip() == str(codigo_referencia).strip():
                     # Quando encontrar o código
                     nome = dados.get('Nome_Solicitante', '').replace('Solicitante/Endereço:', '').replace('Applicant/Address:', '').strip()
                     cnpj = dados.get('CNPJ', '')

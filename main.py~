@@ -20,7 +20,4 @@ for codigo, status, dados_pdf in resultados:
     print(f'{codigo} - {status}')
 
     if status == "PDF encontrado e dados extraídos":
-        print(f"Código: {codigo}")
-        print(f"Dados extraídos: {dados_pdf}")
-
         preencher_planilhas(planilha_caminho, dados_pdf, codigo)

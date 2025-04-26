@@ -70,3 +70,21 @@ def pdf_extract(codigos_encontrados, base_path):
         resultados.append((codigo, status, dados_pdf))
 
     return resultados
+
+if __name__ == "__main__":
+    base_path = r"C:\Users\marce\OneDrive - LMP Certificações\4. Projetos\2 - Ex\ALUTAL\181825"
+
+    # Exemplo de códigos encontrados, você pode colocar os que você quiser testar
+    codigos_encontrados = [
+        "LMP 24.0190",
+        "LMP 24.0191",
+        "LMP 25.0001"
+    ]
+
+    resultados = pdf_extract(codigos_encontrados, base_path)
+
+    for codigo, status, dados in resultados:
+        print(f"Código: {codigo}")
+        print(f"Status: {status}")
+        print(f"Dados extraídos: {dados}")
+        print("-" * 50)

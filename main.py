@@ -2,25 +2,55 @@ from excel_load import carregar_codigos_excel
 from pdf_extract import pdf_extract
 from write_excel_file import preencher_planilhas
 import os
+from config import PLANILHA_CAMINHO, BASE_PATH
+from logger import get_logger
 
-planilha_caminho = r"E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets\Processos - SPI.xlsm"
-base_path = r"E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets"
+logger = get_logger(__name__)
 
-# Teste para ver as pastas que existem
-print("Pastas que existem em base_path:")
-for pasta in os.listdir(base_path):
-    print(pasta)
-print("-" * 50)
 
-# Continua o seu código normal
-codigos_encontrados = carregar_codigos_excel(planilha_caminho)
-resultados = pdf_extract(codigos_encontrados, base_path)
+def main():
+    """Função principal do programa"""
+    logger.info("Iniciando processamento")
 
-for codigo, status, dados_pdf in resultados:
-    print(f'{codigo} - {status}')
+    # Verificar se os caminhos existem
+    if not os.path.exists(PLANILHA_CAMINHO):
+        logger.error(f"Planilha não encontrada: {PLANILHA_CAMINHO}")
+        return
 
-    if status == "PDF encontrado e dados extraídos":
-        print(f"Código: {codigo}")
-        print(f"Dados extraídos: {dados_pdf}")
+    if not os.path.exists(BASE_PATH):
+        logger.error(f"Caminho base não encontrado: {BASE_PATH}")
+        return
 
-        preencher_planilhas(planilha_caminho, dados_pdf, codigo)
+    # Teste para ver as pastas que existem
+    logger.info("Pastas que existem em base_path:")
+    for pasta in os.listdir(BASE_PATH):
+        logger.info(f"  - {pasta}")
+
+    # Continua seu código normal
+    logger.info(f"Carregando códigos da planilha: {PLANILHA_CAMINHO}")
+    codigos_encontrados = carregar_codigos_excel(PLANILHA_CAMINHO)
+    logger.info(f"Encontrados {len(codigos_encontrados)} códigos na planilha")
+
+    logger.info("Extraindo dados dos PDFs")
+    resultados = pdf_extract(codigos_encontrados, BASE_PATH)
+
+    # Processar resultados
+    for codigo, status, dados_pdf in resultados:
+        logger.info(f"{codigo} - {status}")
+
+        if status == "PDF encontrado e dados extraídos":
+            logger.info(f"Código: {codigo}")
+            logger.info(f"Dados extraídos: {dados_pdf}")
+
+            # Preencher a planilha
+            sucesso = preencher_planilhas(PLANILHA_CAMINHO, dados_pdf, codigo)
+            if sucesso:
+                logger.info(f"Planilha atualizada com sucesso para {codigo}")
+            else:
+                logger.warning(f"Falha ao atualizar planilha para {codigo}")
+
+    logger.info("Processamento concluído")
+
+
+if __name__ == "__main__":
+    main()

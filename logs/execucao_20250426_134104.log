@@ -1,0 +1,13 @@
+2025-04-26 13:41:04,426 - __main__ - INFO - Executando teste individual de pdf_extract.py
+2025-04-26 13:41:04,427 - __main__ - INFO - Iniciando extração de PDFs para 3 códigos
+2025-04-26 13:41:04,427 - __main__ - INFO - Usando caminho base: E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets
+2025-04-26 13:41:04,427 - __main__ - INFO - Processando código: LMP 24.0190
+2025-04-26 13:41:04,427 - utils - WARNING - Pasta para o código LMP 24.0190 não encontrada em E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets
+2025-04-26 13:41:04,427 - __main__ - WARNING - Estrutura de diretórios inválida para LMP 24.0190
+2025-04-26 13:41:04,427 - __main__ - INFO - Processando código: LMP 24.0191
+2025-04-26 13:41:04,428 - utils - WARNING - Pasta para o código LMP 24.0191 não encontrada em E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets
+2025-04-26 13:41:04,429 - __main__ - WARNING - Estrutura de diretórios inválida para LMP 24.0191
+2025-04-26 13:41:04,429 - __main__ - INFO - Processando código: LMP 25.0800X
+2025-04-26 13:41:04,429 - utils - WARNING - Pasta para o código LMP 25.0800X não encontrada em E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets
+2025-04-26 13:41:04,429 - __main__ - WARNING - Estrutura de diretórios inválida para LMP 25.0800X
+2025-04-26 13:41:04,429 - __main__ - INFO - Extração concluída. Processados 3 códigos

@@ -1,0 +1,68 @@
+import os
+from excel_load import carregar_codigos_excel  # Importa a função de carregar códigos do Excel
+
+
+# Função para procurar PDFs nas pastas
+def procurar_pdfs(codigos_encontrados, base_path):
+    resultados = []
+
+    for codigo in codigos_encontrados:
+        pasta_encontrada = None
+
+        # Buscar nas pastas do diretório base
+        for nome_pasta in os.listdir(base_path):
+            if nome_pasta.startswith(codigo):
+                pasta_encontrada = nome_pasta
+                break
+
+        if not pasta_encontrada:
+            status = 'Pasta não encontrada'
+        else:
+            caminho_certificado = os.path.join(base_path, pasta_encontrada, '2 - Técnica', '1 - Certificado')
+            if not os.path.exists(caminho_certificado):
+                status = 'Pasta Certificado ausente'
+            else:
+                pdf_encontrado = None
+                for arquivo in os.listdir(caminho_certificado):
+                    if arquivo.endswith('.pdf') and arquivo.startswith(codigo):
+                        pdf_encontrado = arquivo
+                        break
+                if pdf_encontrado:
+                    status = 'PDF encontrado'
+                else:
+                    status = 'PDF não encontrado'
+
+        # Adiciona os resultados à lista
+        resultados.append((codigo, status))
+
+    return resultados
+
+
+# Função principal para combinar tudo
+def main():
+    pasta_base = r'E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets'  # Caminho onde os PDFs estão localizados
+    planilha_caminho = os.path.join(pasta_base, 'Processos - SPI.xlsm')  # Caminho da planilha
+
+    # Carregar os códigos da planilha
+    codigos_encontrados = carregar_codigos_excel(planilha_caminho)
+
+    # Exibir os códigos encontrados (para verificar se está tudo certo)
+    print("Códigos carregados da planilha:")
+    for codigo in codigos_encontrados:
+        print(f"- {codigo}")
+
+    # Definir o caminho onde as pastas de PDFs estão localizadas
+    base_path = r'E:\Programer\Python\Projetos\LMP\LMP_SPI_plan\Assets'  # Atualize se necessário
+
+    # Chamar a função de procurar PDFs
+    resultados = procurar_pdfs(codigos_encontrados, base_path)
+
+    # Exibir os resultados
+    print("\nResultados da busca de PDFs:")
+    for codigo, status in resultados:
+        print(f"Código {codigo}: {status}")
+
+
+# Executar o script principal
+if __name__ == "__main__":
+    main()
